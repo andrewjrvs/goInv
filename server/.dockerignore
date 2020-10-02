@@ -1,0 +1,7 @@
+node_modules
+db
+npm-debug.log
+env-setup.bat
+env-setup.ps1
+readme.md
+*.env

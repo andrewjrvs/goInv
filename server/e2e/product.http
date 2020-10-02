@@ -1,0 +1,29 @@
+GET http://localhost:8082/api/product/
+
+###
+
+GET http://localhost:8082/api/product/0076808009255
+
+###
+
+GET http://localhost:8082/api/product/123456654321
+
+
+###
+
+
+POST http://localhost:8082/api/product/
+Content-Type: application/json
+
+{
+  "categories": "",
+  "code": "123456654321",
+  "product_name": "Testing",
+  "brand_owner": "Testing Owner"  
+}
+
+###
+
+DELETE http://localhost:8082/api/product/123456654321
+
+###

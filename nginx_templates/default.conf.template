@@ -1,0 +1,15 @@
+
+
+server {
+    listen 80;
+    root   /usr/share/nginx/html;
+
+    location / {
+        proxy_pass http://web:4200;
+    }
+
+    location /api {
+        proxy_pass http://server:8080;
+    }
+    
+}

@@ -1,0 +1,11 @@
+FROM node:14 AS builder
+
+# Move to working directory /build
+WORKDIR /node
+
+# Copy the code into the container
+COPY . .
+
+EXPOSE 4200
+
+ENTRYPOINT ["/bin/sh"]

@@ -1,0 +1,29 @@
+GET http://localhost/api/inventory
+
+###
+
+GET http://localhost:8082/api/inventory/5852f4725d314e8f9dd9db7d391a6744
+
+###
+
+POST http://localhost:8082/api/inventory/
+Content-Type: application/json
+
+{
+  "product_name" : "Sr Tests a lot",
+  "brand_owner": "Home",
+  "pending": true
+}
+
+###
+
+GET http://localhost:8082/api/inventory/73991858-8594-47c1-8112-ed4fef0dd49b
+
+
+###
+
+DELETE http://localhost:8082/api/inventory/209f7001-b289-43d2-8ce4-3307a30b9d08
+
+###
+
+GET http://localhost:8082/api/inventory?pending

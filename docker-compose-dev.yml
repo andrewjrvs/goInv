@@ -1,0 +1,45 @@
+version: "3.8"
+services:
+  server:
+    build:
+      context: ./server
+      dockerfile: Dockerfile-dev
+    container_name: go-inv-server
+    env_file:
+      - ./goInv.env
+    volumes: 
+      - "./server:/go"
+    # ports: 
+    #   - "8082:8080"
+    networks:
+      - go-inv
+    stdin_open: true
+    entrypoint: ["go", "run", "main"]
+  web:
+    build:
+      context: ./web
+      dockerfile: Dockerfile-dev
+    container_name: go-inv-site
+    volumes: 
+      - "./web:/node"
+    # ports: 
+    #   - "8083:4200"
+    stdin_open: true
+    networks:
+      - go-inv
+  nginx: 
+    image: nginx:latest
+    container_name: go-inv-nginx
+    volumes:
+      - "./nginx_templates:/etc/nginx/templates"
+    ports:
+      - 80:80
+    depends_on:
+      - web
+      - server
+    networks:
+      - go-inv
+networks:
+  go-inv:
+    
+    
