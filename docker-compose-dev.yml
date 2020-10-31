@@ -1,12 +1,34 @@
 version: "3.8"
 services:
+  mongo:
+    image: mongo:latest
+    container_name: mongo_dev
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
+    networks:
+      - go-inv
+  mongo_seed:
+    container_name: mongo_seed
+    build: 
+      context: ./mongodb_seed
+      dockerfile: Dockerfile-dev
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
+    networks:
+      - go-inv
+    links:
+      - mongo
+    depends_on:
+      - mongo
   server:
     build:
       context: ./server
       dockerfile: Dockerfile-dev
     container_name: go-inv-server
     env_file:
-      - ./goInv.env
+      - ./goInv-dev.env
     volumes: 
       - "./server:/go"
     # ports: 
@@ -27,6 +49,7 @@ services:
     stdin_open: true
     networks:
       - go-inv
+    entrypoint: ["npm", "run", "docker-dev"]
   nginx: 
     image: nginx:latest
     container_name: go-inv-nginx

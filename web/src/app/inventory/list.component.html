@@ -1,0 +1,11 @@
+<div class="filter-wrapper">
+  <label for="list_filter">Filter</label>
+  <input type="text" id="list_filter" placeholder="Filter" [formControl]="filterControl" />
+</div>
+<div class="inventory-wrapper">
+  <app-item *ngFor="let inv of (inventory | async) " [item]="inv" (delete)="onDelete($event)"
+    (selected)="onSelected($event)"></app-item>
+</div>
+<div class="undoPendingDeletes">
+  <a aria-label="Undo" (click)="undoDeletes();"><i class="cvbn-icon">↩️</i></a>
+</div>

@@ -118,3 +118,4 @@ npm-debug.log
 env-setup.bat
 env-setup.ps1
 goInv.env
+goInv-dev.env

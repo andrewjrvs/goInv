@@ -1,0 +1,70 @@
+.undoPendingDeletes {
+  position: fixed;
+  right: 0;
+  bottom: 100px;
+  background-color: hsl(128, 40%, 62%);
+  padding: 5px 10px;
+  border-radius: 12px 0 0 12px;
+  font-size: 25px;
+  text-align: center;
+  cursor: pointer;
+  box-shadow: -1px 0 10px #555;
+  display: none;
+
+  i {
+    font-style: normal;
+  }
+
+  a::after {
+    content: attr(aria-label);
+    display: block;
+    color: rgb(85, 85, 85);
+    //position: absolute;
+    //bottom: 0.1em;
+    //left: 0px;
+    //right: 0px;
+    font-size: 14px;
+    text-align: center;
+    text-decoration: none;
+  }
+}
+
+:host(.pendingDelete) {
+  .undoPendingDeletes {
+    display: block;
+    animation: slide 1.5s forwards;
+  }
+}
+
+@keyframes slide {
+  0% {
+    right: -100px;
+  }
+
+  100% {
+    right: 0;
+  }
+}
+
+app-item+app-item {
+  border-top: 1px solid black;
+}
+
+.filter-wrapper {
+  padding: .5em .5em .5em .5em;
+
+  label {
+    display: none;
+  }
+
+  input {
+    font-size: 16px;
+    border-radius: 6px;
+    display: block;
+    width: 100%;
+    padding: .5em;
+    box-sizing: border-box;
+    border-color: black;
+    box-shadow: 2px 2px 5px #ccc;
+  }
+}

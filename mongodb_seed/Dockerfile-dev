@@ -1,0 +1,4 @@
+FROM mongo
+
+COPY init.json /init.json
+CMD mongoimport --host=mongo --db=currentLog --collection=f_log --authenticationDatabase=admin --username=root --password='example' --type=json --file=/init.json --jsonArray 

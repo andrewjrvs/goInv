@@ -1,0 +1,10 @@
+<div class="wrapper" #wrapper>
+    <span class="icon">{{getIcon()}}</span> 
+    <label class="brand">{{item.brand_owner || "Unknown"}}</label>
+    <label class="product">{{item.product_name || "Unknown"}}</label>
+    <ul class="actions">
+        <li><a href="javascript:void(0);" (click)="onClickDelete()" data-action="delete" data-icon="" title="delete">🗑️</a></li>
+        <li><a href="javascript:void(0);" (click)="onClickSelect()" data-action="detail" title="update">📖</a></li>
+    </ul>
+</div>
+

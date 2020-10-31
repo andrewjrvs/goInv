@@ -2,7 +2,6 @@ package main
 
 import (
 	"context"
-	"fmt"
 	"log"
 	"os"
 	"time"
@@ -12,10 +11,8 @@ import (
 )
 
 func Connect() (mongo.Client, context.Context, func(), error) {
-	uri := fmt.Sprintf("mongodb+srv://%s:%s@%s?retryWrites=true&w=majority",
-		os.Getenv("MONGO_USER"),
-		os.Getenv("MONGO_PASS"),
-		os.Getenv("MONGO_CONN"))
+
+	uri := os.Getenv("MONGO_CONN")
 
 	clientOptions := options.Client().ApplyURI(uri)
 
@@ -30,6 +27,7 @@ func Connect() (mongo.Client, context.Context, func(), error) {
 	}
 
 	ping_err := client.Ping(ctx, nil)
+
 	if ping_err != nil {
 		log.Fatal(ping_err)
 	}

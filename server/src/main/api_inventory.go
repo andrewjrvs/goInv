@@ -14,8 +14,8 @@ import (
 )
 
 type InventoryBase struct {
-	Id string `json:"_id,omitempty" yaml:"_id" bson:"_id,omitempty"`
-
+	Id           string `json:"_id,omitempty" yaml:"_id" bson:"_id,omitempty"`
+	Brands       string `json:"brands,omitempty" yaml:"brands" bson:"brands"`
 	Product_name string `json:"product_name" yaml:"product_name" bson:"product_name"`
 	Image_url    string `json:"image_url,omitempty" yaml:"image_url,omitempty" bson:"image_url,omitempty"`
 	Brand_owner  string `json:"brand_owner" yaml:"brand_owner" bson:"brand_owner"`
@@ -92,6 +92,10 @@ func getCurrentList(w http.ResponseWriter, r *http.Request, path string) {
 				bson.D{primitive.E{Key: "pending", Value: false}},
 			}})
 		}
+
+		if _, vlu := r.URL.Query()["session"]; vlu {
+			query = append(query, primitive.E{Key: "SessionKey", Value: vlu})
+		}
 	}
 
 	collection := client.Database("currentLog").Collection("f_log")
@@ -141,10 +145,10 @@ func deleteItem(w http.ResponseWriter, r *http.Request, path string) {
 		log.Fatal(err)
 	}
 	if result.DeletedCount > 0 {
-		w.WriteHeader(http.StatusGone)
+		w.WriteHeader(http.StatusNoContent)
 		return
 	}
-	w.WriteHeader(http.StatusNoContent)
+	w.WriteHeader(http.StatusGone)
 }
 
 // deleteItem this will update a single item...
@@ -182,10 +186,10 @@ func markItemRemoved(w http.ResponseWriter, r *http.Request, path string) {
 	}
 	if result.ModifiedCount > 0 {
 		// then lets try it
-		w.WriteHeader(http.StatusGone)
+		w.WriteHeader(http.StatusNoContent)
 		return
 	}
-	w.WriteHeader(http.StatusNoContent)
+	w.WriteHeader(http.StatusGone)
 }
 
 func putItem(w http.ResponseWriter, r *http.Request, path string) {

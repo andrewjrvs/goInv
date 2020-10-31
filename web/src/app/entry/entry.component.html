@@ -1,0 +1,12 @@
+<form [formGroup]="lookupForm" (ngSubmit)="onSubmit()" novalidate >
+    <div class="input-wrapper">
+        <label for="upc">UPC Code</label>
+        <input type="text" id="upc" formControlName="upc" />
+    </div>
+</form>
+<app-specs [product]="lastProduct" [hideUnknown]="false" [includeImage]="true"></app-specs>
+
+
+<div class="inventory-wrapper"> 
+    <!-- <app-item *ngFor="let inv of (inventory | async) " [item]="inv" (delete)="onDelete($event)"></app-item> -->
+  </div>

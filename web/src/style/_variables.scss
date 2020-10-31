@@ -1,0 +1,27 @@
+$gutter: 1em;
+$details-bg-color: cornflowerblue !default;
+
+@mixin detail-wrapper() {
+    margin: 0 #{- $gutter} 0 #{- $gutter};
+    padding: 0;
+    background-color: $details-bg-color;
+}
+
+
+@mixin detail-item() {
+    padding: 0 $gutter;
+    margin: 0;
+    display: block;
+    border-top: 1px solid black;
+    .title {
+        line-height: 2em;
+        font-size: .7em;
+        display: block;
+    }
+    .details {
+        font-size: 1.4em;
+        display: block;
+        padding-bottom: .5em;
+        min-height: 25px;
+    }
+}

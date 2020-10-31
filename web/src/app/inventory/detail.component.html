@@ -1,0 +1,20 @@
+<h1> {{item.product_name || "Unknown"}}</h1>
+
+<app-specs [product]="product || item">
+    <li class="created">
+        <span class="title">Created</span>
+        <span class="details">{{item.created | date:"longDate"}}</span></li>
+    <li class="expire">
+        <span class="title">Expire</span>
+        <span class="details">{{item.expire | date:"longDate"}}</span></li>
+</app-specs>
+
+
+<div class="product-image" *ngIf="product && product.image_url">
+    <img  [src]="product.image_url" [alt]="'Image of ' + product.product_name" />
+</div>
+
+<button (click)="show();">Show</button>
+<dialog #dialog>
+    <app-specs [product]="product"></app-specs>
+</dialog>

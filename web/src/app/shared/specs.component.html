@@ -1,0 +1,28 @@
+<ul class="specs">
+    <li class="brands" *ngIf="product?.brands || !hideUnknown">
+        <span class="title">Brands</span>
+        <span class="details">
+            {{product?.brands}}
+        </span>
+    </li>
+    <li>
+        <span class="title">Brand Owner</span>
+        <span class="details">{{product?.brand_owner || (!hideUnknown ? '' : 'Unknown')}}</span>
+    </li>
+    <li class="upc" *ngIf="product?.code || !hideUnknown">
+        <span class="title">UPC Code</span>
+        <span class="details">{{product?.code}}</span></li>
+    <ng-content></ng-content>
+    <li class="image" *ngIf="includeImage && (product?.image_url || !hideUnknown)">
+        <span class="title">Image</span>
+        <img *ngIf="product?.image_url" [src]="product.image_url" [alt]="'Image of ' + product?.product_name" />
+    </li>
+    <li class="categories" *ngIf="product?.categories || !hideUnknown">
+        <span class="title">Categories</span>
+        <span class="details">
+            <ul class="categories-tags">
+                <li *ngFor="let cat of product?.categories.split(',')"><a>{{cat}}</a></li>
+            </ul>
+        </span>
+    </li>
+</ul>

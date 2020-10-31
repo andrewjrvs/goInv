@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Component, HostBinding, OnInit } from '@angular/core';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { map, switchMapTo } from 'rxjs/operators';
 import { InventoryService } from '../inventory.service';
 import { InventoryBase } from '../models/InventoryBase';
 
@@ -10,13 +11,10 @@ import { InventoryBase } from '../models/InventoryBase';
 })
 export class InventoryComponent implements OnInit {
 
-  public inventory: Observable<InventoryBase[]>;
-
-  constructor(private invSrv: InventoryService) {
-    this.inventory = invSrv.list();
+  constructor() {
   }
-
   ngOnInit(): void {
   }
+
 
 }

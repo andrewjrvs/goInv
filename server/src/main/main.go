@@ -43,8 +43,10 @@ func FileServer(w http.ResponseWriter, r *http.Request) {
 	}
 	fullPath = pwd + "/static" + fullPath
 	if !fileExists(fullPath) {
-		w.WriteHeader(http.StatusNotFound)
-		return
+		// for angular we will default to index.html...
+		fullPath = pwd + "/static/index.html"
+		// w.WriteHeader(http.StatusNotFound)
+		// return
 	}
 
 	dat, _ := ioutil.ReadFile(fullPath)
@@ -52,7 +54,6 @@ func FileServer(w http.ResponseWriter, r *http.Request) {
 
 	if strings.HasSuffix(fullPath, ".css") {
 		w.Header().Add("Content-Type", `text/css`)
-
 	}
 
 	fmt.Fprint(w, rtnContent)

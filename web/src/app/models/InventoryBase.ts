@@ -3,6 +3,7 @@ export interface InventoryBase {
     product_name: string;
     image_url?: string;
     brand_owner: string;
+    brands?: string;
     quantity?: number;
     code?: string;
     __key?: string;

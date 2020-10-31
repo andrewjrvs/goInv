@@ -19,6 +19,7 @@ type OpenFoodFactBaseProduct struct {
 	Product_name string `json:"product_name" yaml:"product_name" bson:"product_name"`
 	Brand_owner  string `json:"brand_owner" yaml:"brand_owner" bson:"brand_owner"`
 	Image_url    string `json:"image_url,omitempty" yaml:"image_url" bson:"image_url"`
+	Brands       string `json:"brands,omitempty" yaml:"brands" bson:"brands"`
 }
 
 type OpenFoodFactsResponse struct {
